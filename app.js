@@ -27,6 +27,8 @@
       "Mixo-Dorian",
     ],
 
+    defaultOrder: [0, 1, 2, 3, 4, 4, 5, 6, 7, 1, 3, 0],
+
     symbolHashTable: {
       "Minor-Pentatonic": "./svg/pentagon-svgrepo-com.svg",
       "Double-Stops": "./svg/stop-svgrepo-com.svg",
@@ -42,7 +44,6 @@
       this.populateBars.bind(this);
       this.buildDropDown.bind(this);
       this.onDefault.bind(this);
-      // this.setEvents.bind(this);
     },
 
     populateBars: function () {
@@ -92,27 +93,12 @@
       }
     },
 
-    // setEvents: function (barId) {
-    //   var techniqueName = document.getElementById('selectTechnique' + barId).value;
-    //   var symbol = this.symbolHashTable[techniqueName];
-    //   if (techniqueName !== "Choose technique") {
-    //     document.getElementById("technique" + barId).innerHTML = techniqueName;
-    //     var symbolElement = document.getElementById("symbol" + barId);
-    //     while (symbolElement.firstChild) {
-    //       symbolElement.removeChild(symbolElement.firstChild);
-    //     }
-    //     var imageElement = document.createElement("img");
-    //     imageElement.setAttribute("src", symbol);
-    //     symbolElement.appendChild(imageElement);
-    //   }
-    // },
-
     onDefault: function (barId) {
       var select = document.getElementById('selectTechnique' + barId);
-      document.getElementById("technique" + barId).innerHTML = "Minor";
+      document.getElementById("technique" + barId).innerHTML = this.techniques[this.defaultOrder[barId - 1]];
       var symbolElement = document.getElementById("symbol" + barId);
       var imageElement = document.createElement("img");
-      imageElement.setAttribute("src", "./svg/pentagon-svgrepo-com.svg");
+      imageElement.setAttribute("src", this.symbolHashTable[this.techniques[this.defaultOrder[barId - 1]]]);
       symbolElement.appendChild(imageElement);
 
       select.onchange = function () {
