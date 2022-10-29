@@ -1,12 +1,9 @@
 .header {
-  text-align: left;
+  text-align: center;
   font-size: 30px;
   padding: 10px 10px;
 }
 
-#start-button {
-  margin-left: 10px;
-}
 .wrapper {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -15,7 +12,7 @@
 .grid-container {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: repeat(4, 1fr);
+  grid-template-rows: repeat(3, .25fr);
   border: 1px solid rgba(0, 0, 0, 0.8);
 }
 
@@ -45,7 +42,7 @@
 
 .grid-item {
   background-color: rgba(255, 255, 255, 0.8);
-  padding: 5px;
+  padding: 20px;
   font-size: 30px;
   text-align: center;
 }
@@ -54,9 +51,7 @@
   text-align: left;
   font-size: 16px;
   grid-column-start: 1;
-  grid-column-end: 3;
-  grid-row-start: 1;
-  grid-row-end: 2;
+  grid-column-end: 2;
   padding-top: 5%;
   padding-left: 5%;
 }
@@ -73,10 +68,8 @@
   text-align: left;
   font-size: 18px;
   padding-top: 3.5%;
-  grid-column-start: 3;
-  grid-column-end: 7;
-  grid-row-start: 1;
-  grid-row-end: 2;
+  grid-column-start: 2;
+  grid-column-end: 4;
 }
 
 .technique {
@@ -95,8 +88,6 @@
 .symbol {
   grid-column-start: 1;
   grid-column-end: -1;
-  grid-row-start: 3;
-  grid-row-end: 7;
   padding-top: 0;
 }
 
@@ -122,19 +113,10 @@ img {
   width: 40px;
 }
 
-p {
-  font-size: 20px;
-}
-
-.credit {
-  margin: auto;
+.footer {
   text-align: center;
   font-size: 14px;
   color: lightslategray;
   font-style: italic;
   padding-top: 10px;
-}
-
-li {
-  font-size: 20px;
 }
