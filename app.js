@@ -98,7 +98,7 @@
           symbolDiv.classList.add('one-chord');
         }
 
-        if (barId === 9) {
+        if (barId === 9 || barId === 12) {
           techniqueDiv.classList.add('five-chord');
           symbolDiv.classList.add('five-chord');
         }
