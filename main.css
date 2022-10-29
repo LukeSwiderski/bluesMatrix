@@ -32,6 +32,14 @@
   padding-left: 5%;
 }
 
+.one-chord {
+  background-color: rgb(255, 194, 194);
+}
+
+.five-chord {
+  background-color: rgb(177, 244, 177);
+}
+
 .drop-down {
   text-align: left;
   font-size: 18px;

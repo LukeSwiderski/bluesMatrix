@@ -84,6 +84,25 @@
         symbolDiv.setAttribute('id', 'symbol' + barId);
         gridContainer.appendChild(symbolDiv);
 
+        //assign bar background color classes
+        if (
+          barId === 1 ||
+          barId === 2 ||
+          barId === 3 ||
+          barId === 4 ||
+          barId === 7 ||
+          barId === 8 ||
+          barId === 11
+        ) {
+          techniqueDiv.classList.add('one-chord');
+          symbolDiv.classList.add('one-chord');
+        }
+
+        if (barId === 9 || barId === 12) {
+          techniqueDiv.classList.add('five-chord');
+          symbolDiv.classList.add('five-chord');
+        }
+
         select.addEventListener('change', this.onChange.bind(this));
         select.barId = barId;
 
@@ -104,20 +123,20 @@
     },
 
     setTechniquesAndSymbols: function (barId) {
-      var techniques;
-      if (this.storedTechniques.length) {
-        techniques = this.storedTechniques;
-      } else {
-        techniques = this.defaultTechniqueOrder;
+      if (!this.storedTechniques.length) {
+        for (var item of this.defaultTechniqueOrder) {
+          this.storedTechniques.push(item);
+        }
+        util.store('blues-matrix', this.storedTechniques);
       }
-      document.getElementById("technique" + barId).innerHTML = techniques[barId - 1];
+      document.getElementById("technique" + barId).innerHTML = this.storedTechniques[barId - 1];
       var symbolElement = document.getElementById("symbol" + barId);
       var imageElement = document.createElement("img");
       var symbolElement = document.getElementById("symbol" + barId);
       while (symbolElement.firstChild) {
         symbolElement.removeChild(symbolElement.firstChild);
       }
-      imageElement.setAttribute("src", this.symbolHashTable[techniques[barId - 1]]);
+      imageElement.setAttribute("src", this.symbolHashTable[this.storedTechniques[barId - 1]]);
       symbolElement.appendChild(imageElement);
     },
 
