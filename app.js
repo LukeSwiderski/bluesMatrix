@@ -12,7 +12,6 @@
 
   var App = {
     init: function () {
-      util.store('blues-matrix', this.defaultTechniqueOrder);
       this.storedTechniques = util.store('blues-matrix');
       this.populateBars();
     },
@@ -105,14 +104,20 @@
     },
 
     setTechniquesAndSymbols: function (barId) {
-      document.getElementById("technique" + barId).innerHTML = this.storedTechniques[barId - 1];
+      var techniques;
+      if (this.storedTechniques.length) {
+        techniques = this.storedTechniques;
+      } else {
+        techniques = this.defaultTechniqueOrder;
+      }
+      document.getElementById("technique" + barId).innerHTML = techniques[barId - 1];
       var symbolElement = document.getElementById("symbol" + barId);
       var imageElement = document.createElement("img");
       var symbolElement = document.getElementById("symbol" + barId);
       while (symbolElement.firstChild) {
         symbolElement.removeChild(symbolElement.firstChild);
       }
-      imageElement.setAttribute("src", this.symbolHashTable[this.storedTechniques[barId - 1]]);
+      imageElement.setAttribute("src", this.symbolHashTable[techniques[barId - 1]]);
       symbolElement.appendChild(imageElement);
     },
 
