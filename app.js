@@ -72,6 +72,11 @@
         dropDownDiv.appendChild(form);
         gridContainer.appendChild(dropDownDiv);
 
+        // build first spacer div so some background colors can be divided
+        var quarter1div = document.createElement('div');
+        quarter1div.classList.add('grid-item', 'quarter1');
+        gridContainer.appendChild(quarter1div);
+
         // build technique div
         var techniqueDiv = document.createElement('div');
         techniqueDiv.classList.add('grid-item', 'technique');
@@ -84,6 +89,11 @@
         symbolDiv.setAttribute('id', 'symbol' + barId);
         gridContainer.appendChild(symbolDiv);
 
+        // build forth quarter spacer div
+        var quarter4div = document.createElement('div');
+        quarter4div.classList.add('grid-item', 'quarter4');
+        gridContainer.appendChild(quarter4div);
+
         //assign bar background color classes
         if (
           barId === 1 ||
@@ -94,13 +104,24 @@
           barId === 8 ||
           barId === 11
         ) {
+          quarter1div.classList.add('one-chord');
           techniqueDiv.classList.add('one-chord');
           symbolDiv.classList.add('one-chord');
+          quarter4div.classList.add('one-chord');
         }
 
-        if (barId === 9 || barId === 12) {
+        if (barId === 9) {
+          quarter1div.classList.add('five-chord');
           techniqueDiv.classList.add('five-chord');
           symbolDiv.classList.add('five-chord');
+          quarter4div.classList.add('five-chord');
+        }
+
+        if (barId === 12) {
+          quarter1div.classList.add('one-chord');
+          techniqueDiv.classList.add('five-chord');
+          symbolDiv.classList.add('five-chord');
+          quarter4div.classList.add('five-chord');
         }
 
         select.addEventListener('change', this.onChange.bind(this));
