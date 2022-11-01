@@ -78,6 +78,10 @@ p {
   font-size: 20px;
 }
 
+.spacer {
+  min-height: 100px;
+}
+
 .credit {
   margin: auto;
   text-align: center;
@@ -89,4 +93,15 @@ p {
 
 li {
   font-size: 20px;
+}
+
+@media only screen and (min-width: 1000px) {
+  /* For desktop: */
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    max-height: auto;
+  }
 }
