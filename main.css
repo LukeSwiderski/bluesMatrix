@@ -97,6 +97,7 @@
 }
 
 .quarter4 {
+  padding-top: 20%;
   grid-column-start: 7;
   grid-column-end: -1;
   grid-row-start: 2;

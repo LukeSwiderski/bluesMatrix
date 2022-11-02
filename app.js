@@ -13,6 +13,7 @@
   var App = {
     init: function () {
       this.storedTechniques = util.store('blues-matrix');
+      this.storedChordOptions = util.store('chord-options');
       this.populateBars();
     },
 
@@ -81,13 +82,13 @@
         var chordOptionOne = document.createElement('option');
         var chordOptionFour = document.createElement('option');
         var chordOptionFive = document.createElement('option');
+        //
         chordOption.innerHTML = "of the";
         chordOptionOne.textContent = '1';
         chordOptionFour.textContent = '4';
         chordOptionFive.textContent = '5';
         chordSelect.setAttribute('id', 'selectChord' + barId);
         chordSelect.classList.add('chord-select');
-        chordForm.setAttribute('id', 'chordForm' + barId);
         ofTheDiv.classList.add("grid-item", "chord-drop-down");
         chordSelect.appendChild(chordOption);
         chordSelect.appendChild(chordOptionOne);
@@ -117,6 +118,7 @@
         // build forth quarter spacer div
         var quarter4div = document.createElement('div');
         quarter4div.classList.add('grid-item', 'quarter4');
+        quarter4div.setAttribute('id', 'quarterFour' + barId);
         gridContainer.appendChild(quarter4div);
 
         //assign bar background color classes
@@ -151,6 +153,8 @@
 
         select.addEventListener('change', this.onTechniqueChange.bind(this));
         select.barId = barId;
+        chordSelect.addEventListener('change', this.onChordChange.bind(this));
+        chordSelect.barId = barId;
 
         this.buildTechniqueDropDown(barId);
         this.setTechniquesAndSymbols(barId);
@@ -175,7 +179,16 @@
         }
         util.store('blues-matrix', this.storedTechniques);
       }
+
+      if (!this.storedChordOptions.length) {
+        this.storedChordOptions = new Array(12).fill('');
+        util.store('chord-options', this.storedChordOptions);
+      }
+
+      // set technique
       document.getElementById("technique" + barId).innerHTML = this.storedTechniques[barId - 1];
+
+      // set svg symbol image
       var symbolElement = document.getElementById("symbol" + barId);
       var imageElement = document.createElement("img");
       var symbolElement = document.getElementById("symbol" + barId);
@@ -184,6 +197,19 @@
       }
       imageElement.setAttribute("src", this.symbolHashTable[this.storedTechniques[barId - 1]]);
       symbolElement.appendChild(imageElement);
+
+      // set chord options
+      var select = document.getElementById('selectChord' + barId);
+      var chordOptionDiv = document.getElementById("quarterFour" + barId);
+      var chordOption = this.storedChordOptions[barId - 1];
+      if (chordOption.length) {
+        chordOptionDiv.innerHTML = '(of the ' + chordOption + ')';
+        for (option of select.options) {
+          if (option.value === chordOption) {
+            option.selected = true;
+          }
+        }
+      }
     },
 
     onTechniqueChange: function (e) {
@@ -196,7 +222,37 @@
         util.store('blues-matrix', this.storedTechniques);
         this.setTechniquesAndSymbols(barId);
       }
+    },
+
+    onChordChange: function (e) {
+      var chordSelect = e.target;
+      var barId = chordSelect.barId;
+      var value = e.target.value;
+      var quarterFourDiv = document.getElementById('quarterFour' + barId);
+
+      if (value !== 'of the') {
+        quarterFourDiv.innerHTML = '(of the\n' + value + ')';
+      } else {
+        value = '';
+        quarterFourDiv.innerHTML = value;
+      }
+      this.storedChordOptions[barId - 1] = value;
+      util.store('chord-options', this.storedChordOptions);
+      // this.setTechniquesAndSymbols(barId);
     }
+
+    // onChordChange: function (e) {
+    //   var chordSelect = e.target;
+    //   var barId = chordSelect.barId;
+    //   var value = e.target.value;
+    //   var quarterFourDiv = document.getElementById('quarterFour' + barId);
+
+    //   if (value !== 'of the') {
+    //     quarterFourDiv.innerHTML = '(of the\n' + value + ')';
+    //   } else {
+    //     quarterFourDiv.innerHTML = '';
+    //   }
+    // }
   };
   App.init();
 })();
