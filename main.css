@@ -35,22 +35,32 @@
   padding-left: 5%;
 }
 
-.one-chord {
-  background-color: rgb(255, 194, 194);
-}
-
-.five-chord {
-  background-color: rgb(177, 244, 177);
-}
-
 .drop-down {
   text-align: left;
   font-size: 18px;
   padding-top: 3.5%;
   grid-column-start: 3;
-  grid-column-end: -1;
+  grid-column-end: 6;
   grid-row-start: 1;
   grid-row-end: 2;
+}
+
+.select-technique {
+  width: 85px;
+}
+
+.chord-drop-down  {
+  text-align: left;
+  font-size: 18px;
+  padding-top: 3.5%;
+  grid-column-start: 7;
+  grid-column-end: 9;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+.chord-select {
+  width: 55px;
 }
 
 .quarter1 {
@@ -76,6 +86,14 @@
   grid-row-end: -1;
   padding-top: 0;
   min-height: 15vh;
+}
+
+.one-chord {
+  background-color: rgb(255, 194, 194);
+}
+
+.five-chord {
+  background-color: rgb(177, 244, 177);
 }
 
 .quarter4 {
@@ -131,12 +149,22 @@ li {
   }
   
   .drop-down {
-    text-align: left;
+    text-align: center;
     font-size: 18px;
     padding-top: 3.5%;
     padding-left: 5%;
     grid-column-start: 2;
-    grid-column-end: -1;
+    grid-column-end: 6;
+    grid-row-start: 1;
+    grid-row-end: 2;
+  }
+
+  .chord-drop-down  {
+    text-align: left;
+    font-size: 18px;
+    padding-top: 7%;
+    grid-column-start: 7;
+    grid-column-end: 9;
     grid-row-start: 1;
     grid-row-end: 2;
   }

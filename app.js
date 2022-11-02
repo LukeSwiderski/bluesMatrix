@@ -58,19 +58,35 @@
         var barId = i + 1;
         var gridContainer = document.getElementById(barId);
 
-        // build drop down div
+        // build technique  drop down div
         var dropDownDiv = document.createElement('div');
         var form = document.createElement('form');
         var select = document.createElement('select');
         var option = document.createElement('option');
-        option.innerHTML = "Choose Technique";
+        option.innerHTML = "Technique";
         select.setAttribute("id", "selectTechnique" + barId);
+        select.classList.add('select-technique');
         form.setAttribute("id", "formId" + barId);
         dropDownDiv.classList.add("grid-item", "drop-down");
         select.appendChild(option);
         form.appendChild(select);
         dropDownDiv.appendChild(form);
         gridContainer.appendChild(dropDownDiv);
+
+        // build 'of the chord" div
+        var ofTheDiv = document.createElement('div');
+        var chordForm = document.createElement('form');
+        var chordSelect = document.createElement('select');
+        var chordOption = document.createElement('option');
+        chordOption.innerHTML = "of the";
+        chordSelect.setAttribute('id', 'selectChord' + barId);
+        chordSelect.classList.add('chord-select');
+        chordForm.setAttribute('id', 'chordForm' + barId);
+        ofTheDiv.classList.add("grid-item", "chord-drop-down");
+        chordSelect.appendChild(chordOption);
+        chordForm.appendChild(chordSelect);
+        ofTheDiv.appendChild(chordForm);
+        gridContainer.appendChild(ofTheDiv);
 
         // build first spacer div so some background colors can be divided
         var quarter1div = document.createElement('div');
@@ -127,12 +143,12 @@
         select.addEventListener('change', this.onChange.bind(this));
         select.barId = barId;
 
-        this.buildDropDown(barId);
+        this.buildTechniqueDropDown(barId);
         this.setTechniquesAndSymbols(barId);
       }
     },
 
-    buildDropDown: function (barId) {
+    buildTechniqueDropDown: function (barId) {
       var select = document.getElementById("selectTechnique" + barId);
 
       for (technique of this.techniques) {
@@ -141,6 +157,10 @@
         el.value = technique;
         select.appendChild(el);
       }
+    },
+
+    buildChordDropDown: function (barId) {
+
     },
 
     setTechniquesAndSymbols: function (barId) {
@@ -166,7 +186,7 @@
       var barId = select.barId;
       var value = e.target.value;
 
-      if (value !== "Choose Technique") {
+      if (value !== "Technique") {
         this.storedTechniques[barId - 1] = value;
         util.store('blues-matrix', this.storedTechniques);
         this.setTechniquesAndSymbols(barId);
