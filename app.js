@@ -15,6 +15,7 @@
       this.storedTechniques = util.store('blues-matrix');
       this.storedChordOptions = util.store('chord-options');
       this.populateBars();
+      this.randomizeEvent();
     },
 
     techniques: [
@@ -238,21 +239,42 @@
       }
       this.storedChordOptions[barId - 1] = value;
       util.store('chord-options', this.storedChordOptions);
-      // this.setTechniquesAndSymbols(barId);
+    },
+
+    randomizeEvent: function () {
+      var randomizeButton = document.getElementById('randomize');
+      randomizeButton.addEventListener('click', this.randomize.bind(this));
+    },
+
+    randomize: function (e) {
+      var randomizedTechniques = this.defaultTechniqueOrder.slice();
+      var currentIndex = randomizedTechniques.length, randomIndex;
+
+      // While there remain elements to shuffle.
+      while (currentIndex != 0) {
+
+        // Pick a remaining element.
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        // And swap it with the current element.
+        [randomizedTechniques[currentIndex], randomizedTechniques[randomIndex]] = [
+          randomizedTechniques[randomIndex], randomizedTechniques[currentIndex]];
+      }
+      randomizedTechniques[5] = randomizedTechniques[4];
+      this.storedTechniques = randomizedTechniques;
+      util.store('blues-matrix', this.storedTechniques);
+      for (var i = 0; i < randomizedTechniques.length; i++) {
+        this.setTechniquesAndSymbols(i + 1);
+        // reset chord options
+        var select = document.getElementById('selectChord' + (i + 1));
+        select.options[0].selected = true;
+        var quarterFourDiv = document.getElementById('quarterFour' + (i + 1));
+        quarterFourDiv.innerHTML = "";
+      }
+      this.storedChordOptions = new Array(12).fill('');
+      util.store('chord-options', this.storedChordOptions);
     }
-
-    // onChordChange: function (e) {
-    //   var chordSelect = e.target;
-    //   var barId = chordSelect.barId;
-    //   var value = e.target.value;
-    //   var quarterFourDiv = document.getElementById('quarterFour' + barId);
-
-    //   if (value !== 'of the') {
-    //     quarterFourDiv.innerHTML = '(of the\n' + value + ')';
-    //   } else {
-    //     quarterFourDiv.innerHTML = '';
-    //   }
-    // }
   };
   App.init();
 })();

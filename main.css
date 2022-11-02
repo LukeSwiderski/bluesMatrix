@@ -1,12 +1,60 @@
-.header {
-  text-align: left;
-  font-size: 30px;
-  padding: 10px 10px;
+body {
+  padding: 0;
+  margin: 0;
 }
 
-#start-button {
-  margin-left: 10px;
+.header {
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  font-size: 24px;
+  background-color:  rgb(228, 226, 226);
+  min-height: 90px;
 }
+
+.header-title  {
+  margin-left: 5px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+  color: rgb(110, 109, 109);
+}
+
+h2 {
+  padding: 0;
+  margin: 0;
+}
+
+.button-container {
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+button {
+  /* display: flex; */
+  flex-direction: column;
+  align-items: center;
+  padding: 6px 14px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+  border-radius: 6px;
+  border: none;
+  color: #fff;
+  /* background: linear-gradient(180deg, #4B91F7 0%, #367AF6 100%); */
+  background: linear-gradient(180deg, rgb(141, 141, 141) 0%, rgb(117, 117, 117) 100%);
+   background-origin: border-box;
+  box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+button:focus {
+  box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+  outline: 0;
+}
+
+
+/* #start-button {
+  margin-left: 10px;
+} */
 .wrapper {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -128,6 +176,10 @@ p {
 
 li {
   font-size: 20px;
+}
+
+#info {
+  margin-left: 10px;
 }
 
 @media only screen and (min-width: 1000px) {
