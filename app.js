@@ -171,8 +171,7 @@
         util.store('blues-matrix', this.storedTechniques);
         this.setTechniquesAndSymbols(barId);
       }
-    },
-
+    }
   };
   App.init();
 })();
