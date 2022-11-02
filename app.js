@@ -78,12 +78,21 @@
         var chordForm = document.createElement('form');
         var chordSelect = document.createElement('select');
         var chordOption = document.createElement('option');
+        var chordOptionOne = document.createElement('option');
+        var chordOptionFour = document.createElement('option');
+        var chordOptionFive = document.createElement('option');
         chordOption.innerHTML = "of the";
+        chordOptionOne.textContent = '1';
+        chordOptionFour.textContent = '4';
+        chordOptionFive.textContent = '5';
         chordSelect.setAttribute('id', 'selectChord' + barId);
         chordSelect.classList.add('chord-select');
         chordForm.setAttribute('id', 'chordForm' + barId);
         ofTheDiv.classList.add("grid-item", "chord-drop-down");
         chordSelect.appendChild(chordOption);
+        chordSelect.appendChild(chordOptionOne);
+        chordSelect.appendChild(chordOptionFour);
+        chordSelect.appendChild(chordOptionFive);
         chordForm.appendChild(chordSelect);
         ofTheDiv.appendChild(chordForm);
         gridContainer.appendChild(ofTheDiv);
@@ -140,7 +149,7 @@
           quarter4div.classList.add('five-chord');
         }
 
-        select.addEventListener('change', this.onChange.bind(this));
+        select.addEventListener('change', this.onTechniqueChange.bind(this));
         select.barId = barId;
 
         this.buildTechniqueDropDown(barId);
@@ -157,10 +166,6 @@
         el.value = technique;
         select.appendChild(el);
       }
-    },
-
-    buildChordDropDown: function (barId) {
-
     },
 
     setTechniquesAndSymbols: function (barId) {
@@ -181,7 +186,7 @@
       symbolElement.appendChild(imageElement);
     },
 
-    onChange: function (e) {
+    onTechniqueChange: function (e) {
       var select = e.target;
       var barId = select.barId;
       var value = e.target.value;
