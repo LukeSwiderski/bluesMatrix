@@ -20,13 +20,18 @@
 
     techniques: [
       "Minor-Pentatonic",
+      "Major-Pentatonic",
       "Double-Stops",
+      "Blues-Mindset",
       "BB-Box",
       "Chord-Tones",
       "Chord-Voicings",
+      "Hybrid-BS",
+      "Hybrid-Flat-5th",
       "Never-Lost",
       "Mixolydian",
       "Mixo-Dorian",
+
     ],
 
     defaultTechniqueOrder: [
@@ -39,17 +44,21 @@
       "Never-Lost",
       "Mixolydian",
       "Mixo-Dorian",
-      "Double-Stops",
-      "Chord-Tones",
-      "Minor-Pentatonic",
+      "Hybrid-BS",
+      "Major-Pentatonic",
+      "Hybrid-Flat-5th",
     ],
 
     symbolHashTable: {
       "Minor-Pentatonic": "./svg/pentagon-svgrepo-com.svg",
+      "Major-Pentatonic": './svg/parade-marching-svgrepo-com.svg',
       "Double-Stops": "./svg/stop-svgrepo-com.svg",
+      "Blues-Mindset": "./svg/head-svgrepo-com.svg",
       "BB-Box": "./svg/box-svgrepo-com.svg",
       "Chord-Tones": "./svg/music-note-list-svgrepo-com.svg",
       "Chord-Voicings": "./svg/voice-svgrepo-com.svg",
+      "Hybrid-BS": "./svg/diagram-svgrepo-com.svg",
+      "Hybrid-Flat-5th": './svg/flat-tire-svgrepo-com.svg',
       "Never-Lost": "./svg/map-svgrepo-com.svg",
       "Mixolydian": "./svg/mix-svgrepo-com.svg",
       "Mixo-Dorian": "./svg/hat-svgrepo-com.svg",
