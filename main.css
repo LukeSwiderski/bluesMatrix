@@ -56,10 +56,6 @@ button:focus {
   outline: 0;
 }
 
-
-/* #start-button {
-  margin-left: 10px;
-} */
 .wrapper {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -184,7 +180,10 @@ li {
 }
 
 #info {
-  margin-left: 10px;
+  margin-left: 250px;
+  margin-right: 250px;
+  line-height: 2em;
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 @media only screen and (min-width: 1000px) {
