@@ -126,7 +126,7 @@ button:focus {
 }
 
 .technique {
-  overflow: visible;
+  overflow: hidden;
   padding-top: 12px;
   font-size: 16px;
   grid-column-start: 3;
