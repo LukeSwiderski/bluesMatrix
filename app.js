@@ -25,6 +25,10 @@
       "Never-Lost",
       "Mixolydian",
       "Mixo-Dorian",
+      "Blues-Mindset",
+      "Hybrid-BS",
+      "Major-Pentatonic",
+      "Hybrid-Flat-5th"
     ],
 
     defaultTechniqueOrder: [
@@ -51,6 +55,10 @@
       "Never-Lost": "./svg/map-svgrepo-com.svg",
       "Mixolydian": "./svg/mix-svgrepo-com.svg",
       "Mixo-Dorian": "./svg/hat-svgrepo-com.svg",
+      "Blues-Mindset": "./svg/head-svgrepo-com.svg",
+      "Hybrid-BS": "./svg/diagram-svgrepo-com.svg",
+      "Major-Pentatonic": "./svg/parade-marching-svgrepo-com.svg",
+      "Hybrid-Flat-5th": "./svg/flat-tire-svgrepo-com.svg"
     },
 
     populateBars: function () {
