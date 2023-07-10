@@ -73,12 +73,37 @@
         var option = document.createElement('option');
         option.innerHTML = "Choose Technique";
         select.setAttribute("id", "selectTechnique" + barId);
+        select.classList.add("select-technique");
         form.setAttribute("id", "formId" + barId);
         dropDownDiv.classList.add("grid-item", "drop-down");
         select.appendChild(option);
         form.appendChild(select);
         dropDownDiv.appendChild(form);
         gridContainer.appendChild(dropDownDiv);
+
+        // build 'of the chord" div
+        var ofTheDiv = document.createElement('div');
+        var chordForm = document.createElement('form');
+        var chordSelect = document.createElement('select');
+        var chordOption = document.createElement('option');
+        var chordOptionOne = document.createElement('option');
+        var chordOptionFour = document.createElement('option');
+        var chordOptionFive = document.createElement('option');
+
+        chordOption.innerHTML = "of the";
+        chordOptionOne.textContent = '1';
+        chordOptionFour.textContent = '4';
+        chordOptionFive.textContent = '5';
+        chordSelect.setAttribute('id', 'selectChord' + barId);
+        chordSelect.classList.add('chord-select');
+        ofTheDiv.classList.add("grid-item", "chord-drop-down");
+        chordSelect.appendChild(chordOption);
+        chordSelect.appendChild(chordOptionOne);
+        chordSelect.appendChild(chordOptionFour);
+        chordSelect.appendChild(chordOptionFive);
+        chordForm.appendChild(chordSelect);
+        ofTheDiv.appendChild(chordForm);
+        gridContainer.appendChild(ofTheDiv);
 
         // build technique div
         var techniqueDiv = document.createElement('div');
@@ -111,8 +136,11 @@
           symbolDiv.classList.add('five-chord');
         }
 
-        select.addEventListener('change', this.onChange.bind(this));
+        select.addEventListener('change', this.onTechniqueChange.bind(this));
         select.barId = barId;
+        chordSelect.addEventListener('change', this.onChordChange.bind(this));
+        chordSelect.barId = barId;
+
 
         this.buildDropDown(barId);
         this.setTechniquesAndSymbols(barId);
@@ -148,7 +176,7 @@
       symbolElement.appendChild(imageElement);
     },
 
-    onChange: function (e) {
+    onTechniqueChange: function (e) {
       var select = e.target;
       var barId = select.barId;
       var value = e.target.value;
@@ -158,6 +186,54 @@
         util.store('blues-matrix', this.storedTechniques);
         this.setTechniquesAndSymbols(barId);
       }
+    },
+
+    onChordChange: function (e) {
+      var chordSelect = e.target;
+      var barId = chordSelect.barId;
+      var value = e.target.value;
+      var techniqueDiv = document.getElementById("technique" + barId);
+
+      if (value !== 'of the') {
+        techniqueDiv.innerHTML = this.storedTechniques[barId - 1] + "(" + value + ")";
+      } else {
+        techniqueDiv.innerHTML = this.storedTechniques[barId - 1];
+      }
+    },
+
+    randomizeEvent: function () {
+      var randomizeButton = document.getElementById('randomize');
+      randomizeButton.addEventListener('click', this.randomize.bind(this));
+    },
+
+    randomize: function (e) {
+      var randomizedTechniques = this.defaultTechniqueOrder.slice();
+      var currentIndex = randomizedTechniques.length, randomIndex;
+
+      // While there remain elements to shuffle.
+      while (currentIndex != 0) {
+
+        // Pick a remaining element.
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        // And swap it with the current element.
+        [randomizedTechniques[currentIndex], randomizedTechniques[randomIndex]] = [
+          randomizedTechniques[randomIndex], randomizedTechniques[currentIndex]];
+      }
+      randomizedTechniques[5] = randomizedTechniques[4];
+      this.storedTechniques = randomizedTechniques;
+      util.store('blues-matrix', this.storedTechniques);
+      for (var i = 0; i < randomizedTechniques.length; i++) {
+        this.setTechniquesAndSymbols(i + 1);
+        // reset chord options
+        var select = document.getElementById('selectChord' + (i + 1));
+        select.options[0].selected = true;
+        var quarterFourDiv = document.getElementById('quarterFour' + (i + 1));
+        quarterFourDiv.innerHTML = "";
+      }
+      this.storedChordOptions = new Array(12).fill('');
+      util.store('chord-options', this.storedChordOptions);
     },
 
   };
