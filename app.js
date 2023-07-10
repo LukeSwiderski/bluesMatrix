@@ -14,6 +14,7 @@
     init: function () {
       this.storedTechniques = util.store('blues-matrix');
       this.populateBars();
+      this.randomizeEvent();
     },
 
     techniques: [
@@ -229,8 +230,6 @@
         // reset chord options
         var select = document.getElementById('selectChord' + (i + 1));
         select.options[0].selected = true;
-        var quarterFourDiv = document.getElementById('quarterFour' + (i + 1));
-        quarterFourDiv.innerHTML = "";
       }
       this.storedChordOptions = new Array(12).fill('');
       util.store('chord-options', this.storedChordOptions);
