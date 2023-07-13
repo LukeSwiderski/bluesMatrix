@@ -13,21 +13,16 @@
   var App = {
     init: function () {
       this.storedTechniques = util.store('blues-matrix');
-      this.storedChordOptions = util.store('chord-options');
       this.populateBars();
       this.randomizeEvent();
     },
 
     techniques: [
       "Minor-Pentatonic",
-      "Major-Pentatonic",
       "Double-Stops",
-      "Blues-Mindset",
       "BB-Box",
       "Chord-Tones",
       "Chord-Voicings",
-      "Hybrid-BS",
-      "Hybrid-Flat-5th",
       "Never-Lost",
       "Mixolydian",
       "Mixo-Dorian",
@@ -47,21 +42,17 @@
       "Never-Lost",
       "Mixolydian",
       "Mixo-Dorian",
-      "Hybrid-BS",
-      "Major-Pentatonic",
-      "Hybrid-Flat-5th",
+      "Double-Stops",
+      "Chord-Tones",
+      "Minor-Pentatonic",
     ],
 
     symbolHashTable: {
       "Minor-Pentatonic": "./svg/pentagon-svgrepo-com.svg",
-      "Major-Pentatonic": './svg/parade-marching-svgrepo-com.svg',
       "Double-Stops": "./svg/stop-svgrepo-com.svg",
-      "Blues-Mindset": "./svg/head-svgrepo-com.svg",
       "BB-Box": "./svg/box-svgrepo-com.svg",
       "Chord-Tones": "./svg/music-note-list-svgrepo-com.svg",
       "Chord-Voicings": "./svg/voice-svgrepo-com.svg",
-      "Hybrid-BS": "./svg/diagram-svgrepo-com.svg",
-      "Hybrid-Flat-5th": './svg/flat-tire-svgrepo-com.svg',
       "Never-Lost": "./svg/map-svgrepo-com.svg",
       "Mixolydian": "./svg/mix-svgrepo-com.svg",
       "Mixo-Dorian": "./svg/hat-svgrepo-com.svg",
@@ -76,12 +67,12 @@
         var barId = i + 1;
         var gridContainer = document.getElementById(barId);
 
-        // build technique  drop down div
+        // build drop down div
         var dropDownDiv = document.createElement('div');
         var form = document.createElement('form');
         var select = document.createElement('select');
         var option = document.createElement('option');
-        option.innerHTML = "Technique";
+        option.innerHTML = "Choose Technique";
         select.setAttribute("id", "selectTechnique" + barId);
         select.classList.add("select-technique");
         form.setAttribute("id", "formId" + barId);
@@ -99,6 +90,7 @@
         var chordOptionOne = document.createElement('option');
         var chordOptionFour = document.createElement('option');
         var chordOptionFive = document.createElement('option');
+
         chordOption.innerHTML = "of the";
         chordOptionOne.textContent = '1';
         chordOptionFour.textContent = '4';
@@ -126,12 +118,6 @@
         symbolDiv.setAttribute('id', 'symbol' + barId);
         gridContainer.appendChild(symbolDiv);
 
-        // build forth quarter spacer div
-        var quarter4div = document.createElement('div');
-        quarter4div.classList.add('grid-item', 'quarter4');
-        quarter4div.setAttribute('id', 'quarterFour' + barId);
-        gridContainer.appendChild(quarter4div);
-
         //assign bar background color classes
         if (
           barId === 1 ||
@@ -142,17 +128,13 @@
           barId === 8 ||
           barId === 11
         ) {
-          quarter1div.classList.add('one-chord');
           techniqueDiv.classList.add('one-chord');
           symbolDiv.classList.add('one-chord');
-          quarter4div.classList.add('one-chord');
         }
 
-        if (barId === 9) {
-          quarter1div.classList.add('five-chord');
+        if (barId === 9 || barId === 12) {
           techniqueDiv.classList.add('five-chord');
           symbolDiv.classList.add('five-chord');
-          quarter4div.classList.add('five-chord');
         }
 
         select.addEventListener('change', this.onTechniqueChange.bind(this));
@@ -161,17 +143,12 @@
         chordSelect.barId = barId;
 
 
-        select.addEventListener('change', this.onTechniqueChange.bind(this));
-        select.barId = barId;
-        chordSelect.addEventListener('change', this.onChordChange.bind(this));
-        chordSelect.barId = barId;
-
-        this.buildTechniqueDropDown(barId);
+        this.buildDropDown(barId);
         this.setTechniquesAndSymbols(barId);
       }
     },
 
-    buildTechniqueDropDown: function (barId) {
+    buildDropDown: function (barId) {
       var select = document.getElementById("selectTechnique" + barId);
 
       for (technique of this.techniques) {
@@ -189,16 +166,7 @@
         }
         util.store('blues-matrix', this.storedTechniques);
       }
-
-      if (!this.storedChordOptions.length) {
-        this.storedChordOptions = new Array(12).fill('');
-        util.store('chord-options', this.storedChordOptions);
-      }
-
-      // set technique
       document.getElementById("technique" + barId).innerHTML = this.storedTechniques[barId - 1];
-
-      // set svg symbol image
       var symbolElement = document.getElementById("symbol" + barId);
       var imageElement = document.createElement("img");
       var symbolElement = document.getElementById("symbol" + barId);
@@ -207,19 +175,6 @@
       }
       imageElement.setAttribute("src", this.symbolHashTable[this.storedTechniques[barId - 1]]);
       symbolElement.appendChild(imageElement);
-
-      // set chord options
-      var select = document.getElementById('selectChord' + barId);
-      var chordOptionDiv = document.getElementById("quarterFour" + barId);
-      var chordOption = this.storedChordOptions[barId - 1];
-      if (chordOption.length) {
-        chordOptionDiv.innerHTML = '(of the ' + chordOption + ')';
-        for (option of select.options) {
-          if (option.value === chordOption) {
-            option.selected = true;
-          }
-        }
-      }
     },
 
     onTechniqueChange: function (e) {
@@ -227,7 +182,7 @@
       var barId = select.barId;
       var value = e.target.value;
 
-      if (value !== "Technique") {
+      if (value !== "Choose Technique") {
         this.storedTechniques[barId - 1] = value;
         util.store('blues-matrix', this.storedTechniques);
         this.setTechniquesAndSymbols(barId);
