@@ -31,14 +31,10 @@
       "Never-Lost",
       "Mixolydian",
       "Mixo-Dorian",
-<<<<<<< HEAD
-
-=======
       "Blues-Mindset",
       "Hybrid-BS",
       "Major-Pentatonic",
       "Hybrid-Flat-5th"
->>>>>>> no-quarters
     ],
 
     defaultTechniqueOrder: [
@@ -87,11 +83,7 @@
         var option = document.createElement('option');
         option.innerHTML = "Technique";
         select.setAttribute("id", "selectTechnique" + barId);
-<<<<<<< HEAD
-        select.classList.add('select-technique');
-=======
         select.classList.add("select-technique");
->>>>>>> no-quarters
         form.setAttribute("id", "formId" + barId);
         dropDownDiv.classList.add("grid-item", "drop-down");
         select.appendChild(option);
@@ -107,11 +99,6 @@
         var chordOptionOne = document.createElement('option');
         var chordOptionFour = document.createElement('option');
         var chordOptionFive = document.createElement('option');
-<<<<<<< HEAD
-        //
-=======
-
->>>>>>> no-quarters
         chordOption.innerHTML = "of the";
         chordOptionOne.textContent = '1';
         chordOptionFour.textContent = '4';
@@ -127,14 +114,6 @@
         ofTheDiv.appendChild(chordForm);
         gridContainer.appendChild(ofTheDiv);
 
-<<<<<<< HEAD
-        // build first spacer div so some background colors can be divided
-        var quarter1div = document.createElement('div');
-        quarter1div.classList.add('grid-item', 'quarter1');
-        gridContainer.appendChild(quarter1div);
-
-=======
->>>>>>> no-quarters
         // build technique div
         var techniqueDiv = document.createElement('div');
         techniqueDiv.classList.add('grid-item', 'technique');
@@ -176,20 +155,11 @@
           quarter4div.classList.add('five-chord');
         }
 
-<<<<<<< HEAD
-        if (barId === 12) {
-          quarter1div.classList.add('one-chord');
-          techniqueDiv.classList.add('five-chord');
-          symbolDiv.classList.add('five-chord');
-          quarter4div.classList.add('five-chord');
-        }
-=======
         select.addEventListener('change', this.onTechniqueChange.bind(this));
         select.barId = barId;
         chordSelect.addEventListener('change', this.onChordChange.bind(this));
         chordSelect.barId = barId;
 
->>>>>>> no-quarters
 
         select.addEventListener('change', this.onTechniqueChange.bind(this));
         select.barId = barId;
@@ -268,18 +238,6 @@
       var chordSelect = e.target;
       var barId = chordSelect.barId;
       var value = e.target.value;
-<<<<<<< HEAD
-      var quarterFourDiv = document.getElementById('quarterFour' + barId);
-
-      if (value !== 'of the') {
-        quarterFourDiv.innerHTML = '(of the\n' + value + ')';
-      } else {
-        value = '';
-        quarterFourDiv.innerHTML = value;
-      }
-      this.storedChordOptions[barId - 1] = value;
-      util.store('chord-options', this.storedChordOptions);
-=======
       var techniqueDiv = document.getElementById("technique" + barId);
 
       if (value !== 'of the') {
@@ -287,7 +245,6 @@
       } else {
         techniqueDiv.innerHTML = this.storedTechniques[barId - 1];
       }
->>>>>>> no-quarters
     },
 
     randomizeEvent: function () {
@@ -318,20 +275,11 @@
         // reset chord options
         var select = document.getElementById('selectChord' + (i + 1));
         select.options[0].selected = true;
-<<<<<<< HEAD
-        var quarterFourDiv = document.getElementById('quarterFour' + (i + 1));
-        quarterFourDiv.innerHTML = "";
-      }
-      this.storedChordOptions = new Array(12).fill('');
-      util.store('chord-options', this.storedChordOptions);
-    }
-=======
       }
       this.storedChordOptions = new Array(12).fill('');
       util.store('chord-options', this.storedChordOptions);
     },
 
->>>>>>> no-quarters
   };
   App.init();
 })();
