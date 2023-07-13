@@ -62,11 +62,7 @@ button:focus {
 .wrapper {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-<<<<<<< HEAD
-  grid-template-rows: repeat(3, 1fr);
-=======
   height: 100vh;
->>>>>>> no-quarters
 }
 
 .grid-container {
@@ -77,11 +73,8 @@ button:focus {
 }
 
 .grid-item {
-<<<<<<< HEAD
-=======
   background-color: rgba(255, 255, 255, 0.8);
   padding: 5px;
->>>>>>> no-quarters
   text-align: center;
   padding: 0;
   margin: 0;
@@ -90,12 +83,7 @@ button:focus {
 .bar {
   margin-right: 0;
   text-align: left;
-<<<<<<< HEAD
-  white-space: nowrap;
-  font-size: 16px;
-=======
   font-size: 18px;
->>>>>>> no-quarters
   grid-column-start: 1;
   grid-column-end: 3;
   grid-row-start: 1;
@@ -166,12 +154,6 @@ button:focus {
   background-color: rgb(177, 244, 177);
 }
 
-<<<<<<< HEAD
-.quarter4 {
-  padding-top: 20%;
-  margin-left: 0;
-  grid-column-start: 7;
-=======
 .drop-down {
   text-align: left;
   font-size: 18px;
@@ -205,7 +187,6 @@ button:focus {
 .technique {
   font-size: 24px;
   grid-column-start: 1;
->>>>>>> no-quarters
   grid-column-end: -1;
   grid-row-start: 2;
   grid-row-end: -1;
