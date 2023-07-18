@@ -187,6 +187,9 @@
         util.store('blues-matrix', this.storedTechniques);
         this.setTechniquesAndSymbols(barId);
       }
+      // reset chord option
+      var selectChord = document.getElementById('selectChord' + barId);
+      selectChord.options[0].selected = true;
     },
 
     onChordChange: function (e) {
@@ -230,6 +233,9 @@
         // reset chord options
         var select = document.getElementById('selectChord' + (i + 1));
         select.options[0].selected = true;
+        //rest technique drop down
+        var techSelect = document.getElementById('selectTechnique' + (i + 1));
+        techSelect.options[0].selected = true;
       }
       this.storedChordOptions = new Array(12).fill('');
       util.store('chord-options', this.storedChordOptions);
